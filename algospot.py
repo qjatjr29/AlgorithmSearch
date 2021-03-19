@@ -2,30 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 
 
-# BaekJoon_Algorithm = requests.get("https://www.acmicpc.net/problem/tags")
-# # print(BaekJoon_Algoritm.text)
-# BaekJoon_Soup = BeautifulSoup(BaekJoon_Algorithm.text, "html.parser")
-
-# # 클래스 명이 table-responsive인 div 태그 반환.
-# Algorithm_page = BaekJoon_Soup.find("div", {"class": "table-responsive"})
-# # div 태그 들에서 a태그 반환
-# Algorithm_type = Algorithm_page.find_all('a')
-# # print(Algorithm_type)
-
-# # for link in Algorithm_type:
-#   # print(link.attrs['href'])
-
-# Algorithm_name = []
-# for name in Algorithm_type:
-#     Algorithm_name.append(name.string)
-
-# print(Algorithm_name)
-
-# 지금 까지 알고리즘 종류 ( 한글, 영어 ) 리스트형식으로 저장
-# 내가 찾고 싶은 것을 검색해서 리스트에서 찾아 그 링크로 들어가기.
-# 그후 거기에 있는 모든페이지의 문제 추출.
-
-
 # 문제가 있는 페이지 의 수 구하기.
 def get_last_page(url):
     URL = requests.get(url)
@@ -48,7 +24,8 @@ def extract_problem(problems):
     submit = int(problems.find("td", {"class": "submissions"}).find("a").text)
     accepted = td[td_size-1].find("a").text
 
-    # print(f"ID : {ID} name : {name} writer : {writer} submit : {submit} correctRate:{accepted}%")
+    print(
+        f"ID : {ID} name : {name} writer : {writer} submit : {submit} correctRate:{accepted}%")
     return {"ID": ID, "name": name, "writer": writer, "submit": submit, "correctRate": accepted}
 
 
@@ -76,7 +53,7 @@ def getAlgorithmName(Algorithm__algospot):
     #     link_Number=link.attrs['href'].split('/')
     #     _size=len(link_Number)
     # 문제 목록 전체 url
-
+    print(1)
     list_url = f"https://algospot.com/judge/problem/list/?source=&tag={Algorithm__algospot}&order_by=-submissions_count&author="
     # 문제 목록 왼쪽 url
     left_url = "https://algospot.com/judge/problem/list/"
